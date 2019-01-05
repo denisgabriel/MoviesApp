@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Movies App</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_password_check">Password Check</string>
+    <string name="action_login">Login</string>
+    <string name="action_register">Register</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="snackbar_undo">UNDO</string>
+    <string name="snackbar_text">Movie deleted</string>
+</resources>
