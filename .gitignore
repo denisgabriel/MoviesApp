@@ -11,3 +11,5 @@
 .externalNativeBuild
 app/release/app-release.apk
 .idea/dictionaries/dgheorghescu.xml
+keystore.jks
+app/release/Movies App.apk
