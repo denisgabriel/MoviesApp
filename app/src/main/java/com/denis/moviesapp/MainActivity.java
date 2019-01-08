@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
-import com.denis.moviesapp.localAuth.LocalUsers;
+import com.denis.moviesapp.localAuth.LocalUser;
 import com.denis.moviesapp.movies.MoviesAdapter;
 import com.denis.moviesapp.movies.SyncMovies;
 import com.denis.moviesapp.utils.SwipeToDeleteCallback;
@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LocalUsers localUsers = new LocalUsers();
+                LocalUser localUser = new LocalUser();
                 final Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
 
-                localUsers.logout(getApplicationContext());
+                localUser.logout(getApplicationContext());
                 finish();
                 startActivity(loginIntent);
             }
