@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.denis.moviesapp.R;
+import com.denis.moviesapp.localAuth.LocalUser;
 import com.denis.moviesapp.networking.Api;
 import com.denis.moviesapp.utils.FileUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -93,7 +94,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
+                LocalUser localUser = new LocalUser();
 
+                params.put("token", localUser.getToken(context));
                 params.put("title", recentlyDeletedMovie.getTitle());
                 params.put("genre", recentlyDeletedMovie.getGenre());
 
@@ -124,7 +127,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<>();
+                        LocalUser localUser = new LocalUser();
 
+                        params.put("token", localUser.getToken(context));
                         params.put("title", recentlyDeletedMovie.getTitle());
                         params.put("genre", recentlyDeletedMovie.getGenre());
 
