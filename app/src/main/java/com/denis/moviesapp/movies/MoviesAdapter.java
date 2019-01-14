@@ -57,7 +57,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             movies = objectMapper.readValue(newMovies, objectMapper.getTypeFactory().constructCollectionType(List.class, Movie.class));
         } catch (IOException ignored) {}
 
-
         // Sort them by title second
         Collections.sort(movies, new Comparator<Movie>() {
             @Override

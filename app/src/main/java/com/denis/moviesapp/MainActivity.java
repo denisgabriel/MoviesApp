@@ -1,5 +1,6 @@
 package com.denis.moviesapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,8 @@ import com.denis.moviesapp.movies.SyncMovies;
 import com.denis.moviesapp.utils.SwipeToDeleteCallback;
 
 public class MainActivity extends AppCompatActivity {
+    Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         moviesAdapter.initMovies();
 
         // Let's sync them with the database
-        SyncMovies syncMovies = new SyncMovies(this, moviesAdapter);
+        final SyncMovies syncMovies = new SyncMovies(this, moviesAdapter);
         syncMovies.begin();
 
         // Set the callback for our logout button
@@ -52,12 +55,14 @@ public class MainActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
                 LocalUser localUser = new LocalUser();
-                final Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
 
-                localUser.logout(getApplicationContext());
-                finish();
-                startActivity(loginIntent);
+                // stop the timer
+                syncMovies.end();
+
+                // tell DB that we want to logout
+                localUser.logout(context, loginIntent);
             }
         });
     }

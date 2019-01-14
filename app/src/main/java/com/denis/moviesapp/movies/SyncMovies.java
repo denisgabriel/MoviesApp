@@ -7,13 +7,17 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.denis.moviesapp.localAuth.LocalUser;
 import com.denis.moviesapp.networking.Api;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -30,21 +34,22 @@ public class SyncMovies {
             RequestQueue queue = Volley.newRequestQueue(context);
 
             // Basically, this is the request
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Api.URL_GET_MOVIES, null,
-                    new Response.Listener<JSONObject>() {
+            StringRequest request = new StringRequest(Request.Method.POST, Api.URL_GET_MOVIES,
+                    new Response.Listener<String>() {
                         @Override
-                        public void onResponse(JSONObject response) {
+                        public void onResponse(String response) {
                             try {
-                                if (response.getBoolean("error")){
-                                    Toast.makeText(context, response.getString("Error occured while syncing"), Toast.LENGTH_SHORT).show();
+                                JsonNode jsonResponse = (new ObjectMapper()).readTree(response);
+                                if (jsonResponse.get("error").booleanValue()){
+                                    Toast.makeText(context, "Error occured while syncing", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    moviesAdapter.updateMovies(jsonResponse.get("movies").toString());
                                 }
-                                moviesAdapter.updateMovies(response.getString("movies"));
-                            } catch (JSONException e) {
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
                         }
-                    },
-                    null) {
+                    }, null) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
@@ -67,6 +72,11 @@ public class SyncMovies {
     }
 
     public void begin() {
-        timer.scheduleAtFixedRate(timerTask, 0, 10000);
+        timer.scheduleAtFixedRate(timerTask, 0, 1000);
+    }
+
+    public void end(){
+        timer.cancel();
+        timer.purge();
     }
 }

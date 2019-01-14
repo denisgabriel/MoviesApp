@@ -3,6 +3,7 @@ package com.denis.moviesapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ import com.denis.moviesapp.localAuth.LocalUser;
  * A login screen that offers login via username/password.
  */
 public class LoginActivity extends AppCompatActivity {
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +24,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final LocalUser localUser = new LocalUser();
-        final Context context = getApplicationContext();
         final Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
 
         // Check if we are already logged in
         if (localUser.checkIfLoggedIn(context)) {
             startActivity(mainIntent);
             finish();
+            return;
         }
 
         // Set the callback for when the Login button is pressed
@@ -58,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                localUser.login(context, username, password);
+                localUser.login(context, username, password, mainIntent);
             }
         });
 

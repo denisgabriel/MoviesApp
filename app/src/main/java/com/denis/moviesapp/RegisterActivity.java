@@ -15,9 +15,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.denis.moviesapp.networking.Api;
+import com.denis.moviesapp.utils.Encryption;
 import com.denis.moviesapp.utils.NetworkingUtils;
-
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -101,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<>();
 
-                        params.put("hash", BCrypt.hashpw(username + password, BCrypt.gensalt()));
+                        params.put("hash", Encryption.encryptThisString(username + password));
 
                         return params;
                     }
