@@ -9,7 +9,7 @@
 /build
 /captures
 .externalNativeBuild
-app/release/app-release.apk
+app/release/
 .idea/dictionaries/dgheorghescu.xml
 keystore.jks
-app/release/Movies App.apk
+app/debug/
