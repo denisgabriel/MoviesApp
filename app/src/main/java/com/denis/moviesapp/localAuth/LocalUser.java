@@ -11,8 +11,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.denis.moviesapp.LoginActivity;
-import com.denis.moviesapp.MainActivity;
 import com.denis.moviesapp.networking.Api;
 import com.denis.moviesapp.utils.Encryption;
 import com.denis.moviesapp.utils.FileUtils;
