@@ -63,7 +63,7 @@ public class LocalUser {
                                 context.startActivity(mainIntent);
                                 ((Activity)context).finish();
                             } else {
-                                Toast.makeText(context, "Some error occurred. Try again later!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show();
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
