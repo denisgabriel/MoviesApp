@@ -79,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(context, "Registration success", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, "Registration success", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         },

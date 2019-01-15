@@ -56,7 +56,7 @@ public class LocalUser {
                             JsonNode jsonResponse = (new ObjectMapper()).readTree(response);
 
                             if(!jsonResponse.get("error").booleanValue()){
-                                Toast.makeText(context, "Login successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show();
 
                                 file.write(context, filenameLogStatus, jsonResponse.get("token").asText());
 
