@@ -76,7 +76,7 @@ public class LocalUser {
                         if(networkingUtils.isOnline()){
                             Toast.makeText(context, "Server is down. Try again later!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(context, "You MUST be online to login!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "You must be online to login!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -137,7 +137,7 @@ public class LocalUser {
                         if(networkingUtils.isOnline()){
                             Toast.makeText(context, "Server is down. Try again later!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(context, "You MUST be online to login!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "You must be online to logout!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

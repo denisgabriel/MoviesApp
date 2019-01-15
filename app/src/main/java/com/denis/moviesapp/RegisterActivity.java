@@ -79,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(context, "Registration success", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Registration successful", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         },
@@ -91,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (networkingUtils.isOnline()) {
                                     Toast.makeText(context, "Registration failed", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(context, "You must be online in order to register!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "You must be online to register!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
